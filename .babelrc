@@ -1,0 +1,15 @@
+{
+    "plugins": [
+        // "@babel/plugin-transform-modules-commonjs"
+        // "@babel/plugin-proposal-export-default-from"
+    ],
+    "presets": [
+        // "minify",
+        // "env",
+        // "es2015",
+        // "react"
+        // ["react", { "development": true }]
+        "react-app/prod"
+        // "@babel/preset-stage-1"
+    ]
+}
