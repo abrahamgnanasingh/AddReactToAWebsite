@@ -1,4 +1,8 @@
-## Plugin Ordering
+# Add React To A Website
+
+A sample app for adding React to an existing website
+
+## Babel Plugin Ordering
 
 Learn on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io/docs/en/plugins#plugin-ordering)
 
@@ -6,6 +10,9 @@ Learn on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io
 
 In the project directory, you can run:
 
+```
+> `npm start`
+```
 ### `npm start`
 
 Continuously watching for file changes and generates *.js files (which browser understands) in build folder
