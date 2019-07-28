@@ -1,10 +1,10 @@
 # Add React To A Website
 
-A sample app for adding React to an existing website
+A simple app for adding React to an existing website
 
 ## Babel Plugin Ordering
 
-Learn on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io/docs/en/plugins#plugin-ordering)
+Learn about Babel Plugin Ordering on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io/docs/en/plugins#plugin-ordering)
 
 ## Hooks
 
@@ -18,6 +18,6 @@ In the project directory, you can run:
 
 Continuously watching for file changes and generates *.js files (which browser understands) in build folder
 
-### `npm run build`
+#### `npm run build`
 
 Generates *.js files (which browser understands) in build folder for production
