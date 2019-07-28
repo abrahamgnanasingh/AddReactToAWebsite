@@ -11,7 +11,7 @@ Learn on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io
 In the project directory, you can run:
 
 ```
-> `npm start`
+> npm start
 ```
 ### `npm start`
 
