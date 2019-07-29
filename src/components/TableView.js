@@ -1,8 +1,8 @@
 class TableView extends React.Component {
     render() {
         return (
-            <div>
-                <table border="1" style={{borderCollapse: 'collapse'}}>
+            <div class="table-responsive">
+                <table class="table table-bordered">
                     <tbody>
                         {this.props.children}
                     </tbody>
