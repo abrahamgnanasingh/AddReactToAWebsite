@@ -4,6 +4,12 @@
 //     document.getElementById('root')
 // );
 
+function storeCache(el, key, value) {
+    if(typeof window.cacheStorage == 'undefined') { window.cacheStorage = {} };
+    if(!cacheStorage[el]) { cacheStorage[el] = {}; }
+    cacheStorage[el][key] = value;
+}
+
 function renderDomReact(el, component, props, children) {
     // debugger;
     ReactDOM.render(React.createElement(component, props, children), document.getElementById(el));
@@ -14,8 +20,6 @@ function renderDomReact(el, component, props, children) {
 // document.getElementById('renderScript').appendChild(script);
 var model = { name: 'My Record', list: [{id: 1, label: 'Apple'}] };
 var el = 'root', key = 'props';
-var cacheStorage = {};
-if(!cacheStorage[el]) { cacheStorage[el] = {}; }
-cacheStorage[el][key] = model;
+storeCache(el, key, model);
 var html = "<script>window.renderDomReact('" + el + "', App, cacheStorage['" + el + "']['" + key + "'], null);</script>";
 $('#renderDomReactScript').html(html);
