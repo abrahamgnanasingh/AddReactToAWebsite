@@ -13,9 +13,18 @@ function Hooks() {
             <button className="btn btn-primary" onClick={() => setCount(count + 1)}>
                 Click me
             </button>
-            <ul>
-                <li ref={ref} tabIndex="-1">Width: {width}</li>
-            </ul>
+
+            <p ref={ref} tabIndex="-1">Width: {width}</p>
+
+            <dl>
+                <dt tabIndex="-1">Fruits</dt>
+                <dd tabIndex="-1">Mango</dd>
+                <dd tabIndex="-1">Organge</dd>
+                <dd tabIndex="-1">Pineapple</dd>
+                <dt tabIndex="-1">Vegetables</dt>
+                <dd tabIndex="-1">Carrot</dd>
+                <dd tabIndex="-1">Potato</dd>
+            </dl>
         </div>
     )
 }

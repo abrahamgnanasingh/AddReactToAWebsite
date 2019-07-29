@@ -16,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <ErrorBoundary>
-                <div>
+                <div class="container">
                     <h3>
                         <svg viewBox="0 0 24 24" style={{width: 16, height: 16, fill: 'red'}}>
                             <g>

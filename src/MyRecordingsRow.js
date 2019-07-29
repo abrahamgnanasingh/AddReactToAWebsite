@@ -21,7 +21,7 @@ class MyRecordingsRow extends React.Component {
                     <td>{r.startTime}</td>
                     <td>{r.duration}</td>
                     <td>
-                        <button className="btn btn-primary" onClick={() => this.handleRecordingDelete(r)}>Delete</button>
+                        <button className="btn btn-danger" onClick={() => this.handleRecordingDelete(r)}>Delete</button>
                     </td>
                 </tr>
             )
