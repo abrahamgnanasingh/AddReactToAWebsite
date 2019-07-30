@@ -6,9 +6,20 @@ A simple app for adding React to an existing website
 
 Learn about Babel Plugin Ordering on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io/docs/en/plugins#plugin-ordering)
 
+## React
+
+Learn about React on [https://reactjs.org](https://reactjs.org)
+
 ## Hooks
 
 Learn about Hooks on [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html)
+
+## Steps to run
+
+1) Clone the repository
+2) Go to the root folder and do `npm install`
+3) Do `npm start`
+4) Open index.html in browser
 
 ## Available Scripts
 
