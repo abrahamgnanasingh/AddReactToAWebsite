@@ -10,7 +10,7 @@ function Hooks() {
     return (
         <div>
             <p>You clicked {count} times</p>
-            <button className="btn btn-primary" onClick={() => setCount(count + 1)}>
+            <button aria-label="Click me" className="btn btn-primary" onClick={() => setCount(count + 1)}>
                 Click me
             </button>
 
