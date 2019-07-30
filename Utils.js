@@ -12,6 +12,11 @@ var Utils = {
     
     renderDomReact: function(el, component, props, children) {
         // debugger;
-        ReactDOM.render(React.createElement(component, props, children), document.getElementById(el));
+        var cProps = {};
+        if(props) { cProps = JSON.parse(JSON.stringify(props)); };
+        if(children) {
+            children = React.createElement(children);
+        }
+        ReactDOM.render(React.createElement(component, cProps, children), document.querySelector(el));
     }
 };

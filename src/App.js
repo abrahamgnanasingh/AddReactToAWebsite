@@ -13,6 +13,19 @@ class App extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log('Mounted!');
+    }
+
+    componentDidUpdate() {
+        //update changes come here
+        console.log('Updated!!');
+    }
+
+    componentWillUnmount() {
+        console.log('Unmounting.');
+    }
+
     render() {
         return (
             <ErrorBoundary>
