@@ -1,25 +1,14 @@
 
+var data = { name: 'My Record', list: [{id: 1, label: 'Apple'}] };
 // ReactDOM.render(
-//     React.createElement(App, {}, null),
+//     React.createElement(App, model, null),
 //     document.getElementById('root')
 // );
-
-function storeCache(el, key, value) {
-    if(typeof window.cacheStorage == 'undefined') { window.cacheStorage = {} };
-    if(!cacheStorage[el]) { cacheStorage[el] = {}; }
-    cacheStorage[el][key] = value;
-}
-
-function renderDomReact(el, component, props, children) {
-    // debugger;
-    ReactDOM.render(React.createElement(component, props, children), document.getElementById(el));
-}
 
 // var script = document.createElement('script');
 // script[(script.innerText===undefined?"textContent":"innerText")] = 'window.renderDomReact("root", App, {}, null);';
 // document.getElementById('renderScript').appendChild(script);
-var model = { name: 'My Record', list: [{id: 1, label: 'Apple'}] };
-var el = 'root', key = 'props';
-storeCache(el, key, model);
-var html = "<script>window.renderDomReact('" + el + "', App, cacheStorage['" + el + "']['" + key + "'], null);</script>";
+var el = 'root', storeKey = 'props';
+var storedKey = Utils.storeCache(el, storeKey, data);
+var html = "<script>Utils.renderDomReact('" + el + "', App, cacheStorage['" + el + "']['" + storedKey + "'], null);</script>";
 $('#renderDomReactScript').html(html);
