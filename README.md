@@ -21,11 +21,11 @@ In the project directory, you can run:
 
 ##### `npm start`
 
-Continuously watching for file changes and generates *.js files (which browser understands) in build folder
+Runs `npx babel --watch src --out-dir build` (npx comes with npm 5.2+ and higher) and continuously watching for file changes in **src** folder and generates *.js files (which browser understands) in **build** folder
 
 ##### `npm run build`
 
-Runs `npx ` (npx comes with npm 5.2+ and higher) and generates *.js files (which browser understands) in build folder for production
+Generates *.js files (which browser understands) in build folder for production
 
 ### React
 
