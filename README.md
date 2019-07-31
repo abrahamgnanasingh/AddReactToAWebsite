@@ -16,6 +16,8 @@ Learn about Hooks on [https://reactjs.org/docs/hooks-intro.html](https://reactjs
 
 ### Steps to run
 
+Requirements: NodeJS version >= 8
+
 1) Clone the repository using `git clone https://github.com/abrahamgnanasingh/AddReactToAWebsite.git`
 2) Go to the root folder and do `npm install`
 3) Do `npm start`
