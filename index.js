@@ -1,5 +1,5 @@
 
-var data = { name: 'My Record', list: [{id: 1, label: 'Apple'}] };
+var data = { title: 'My Recordings', list: [{id: 1, label: 'Apple'}] };
 ReactDOM.render(
     React.createElement(App, data, null),
     document.querySelector('#root')

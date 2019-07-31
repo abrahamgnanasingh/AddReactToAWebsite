@@ -3,6 +3,7 @@ class TableView extends React.Component {
         return (
             <div className="table-responsive">
                 <table className="table table-bordered">
+                    <thead></thead>
                     <tbody>
                         {this.props.children}
                     </tbody>
