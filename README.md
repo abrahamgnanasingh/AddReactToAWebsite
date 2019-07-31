@@ -6,21 +6,13 @@ A simple app for adding React to an existing website
 
 Learn about Babel Plugin Ordering on [https://babeljs.io/docs/en/plugins#plugin-ordering](https://babeljs.io/docs/en/plugins#plugin-ordering)
 
-### React
-
-Learn about React on [https://reactjs.org](https://reactjs.org)
-
-### Hooks
-
-Learn about Hooks on [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html)
-
 ### Steps to run
 
-Requirements: NodeJS version >= 8
+**You’ll need to have Node 8 or later version on your local development machine**.
 
 1) Clone the repository using `git clone https://github.com/abrahamgnanasingh/AddReactToAWebsite.git`
 2) Go to the root folder and do `npm install`
-3) Do `npm start`
+3) Do `npm start` - (npx comes with npm 5.2+ and higher)
 4) Open index.html in browser
 
 ### Available Scripts
@@ -34,3 +26,11 @@ Continuously watching for file changes and generates *.js files (which browser u
 ##### `npm run build`
 
 Generates *.js files (which browser understands) in build folder for production
+
+### React
+
+Learn about React on [https://reactjs.org](https://reactjs.org)
+
+### Hooks
+
+Learn about Hooks on [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html)
