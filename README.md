@@ -12,7 +12,7 @@ Learn about Babel Plugin Ordering on [https://babeljs.io/docs/en/plugins#plugin-
 
 1) Clone the repository using `git clone https://github.com/abrahamgnanasingh/AddReactToAWebsite.git`
 2) Go to the root folder and do `npm install`
-3) Do `npm start` - (npx comes with npm 5.2+ and higher)
+3) Do `npm start`
 4) Open index.html in browser
 
 ### Available Scripts
@@ -25,7 +25,7 @@ Continuously watching for file changes and generates *.js files (which browser u
 
 ##### `npm run build`
 
-Generates *.js files (which browser understands) in build folder for production
+Runs `npx ` (npx comes with npm 5.2+ and higher) and generates *.js files (which browser understands) in build folder for production
 
 ### React
 
