@@ -9,7 +9,8 @@ class Navbar extends React.Component {
                 {id: 1, key: 'home', label: 'Home'},
                 {id: 2, key: 'page1', label: 'Page 1'},
                 {id: 3, key: 'page2', label: 'Page 2'}
-            ]
+            ],
+            isCollapsed: true
         };
     }
 
@@ -30,27 +31,41 @@ class Navbar extends React.Component {
         });
     }
 
+    handleNavbarToggleCollapse(e) {
+        this.setState({
+            isCollapsed: !this.state.isCollapsed
+        });
+    }
+
     render() {
-        const { activePage, dateJson, navs } = this.state;
+        const { activePage, dateJson, navs, isCollapsed } = this.state;
 
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
                 <div className="container-fluid">
                     <div className="navbar-header">
+                        <button type="button" className={"navbar-toggle " + (isCollapsed ? "collapsed" : "")} aria-expanded="false" aria-controls="navbar" onClick={this.handleNavbarToggleCollapse.bind(this)}>
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
                         <a className="navbar-brand" href="javascript:void(0);">React</a>
                     </div>
-                    <ul className="nav navbar-nav">
-                        {
-                            navs.map(n => {
-                                return (
-                                    <li key={n.key} className={(activePage == n.key ? "active" : "") + " blabla"}><a href="javascript:void(0);" data-key={n.key} onClick={this.handleNavClick.bind(this)}>{n.label}</a></li>
-                                )
-                            })
-                        }
-                    </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="javascript:void(0);"><b>Last Opened Time:</b> {dateJson ? (dateJson.date + ' ' + dateJson.time) : null}</a></li>
-                    </ul>
+                    <div className={"navbar-collapse collapse " + (isCollapsed ? "" : "in")}>
+                        <ul className="nav navbar-nav">
+                            {
+                                navs.map(n => {
+                                    return (
+                                        <li key={n.key} className={(activePage == n.key ? "active" : "")}><a href="javascript:void(0);" data-key={n.key} onClick={this.handleNavClick.bind(this)}>{n.label}</a></li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><a href="javascript:void(0);"><b>Last Opened Time:</b> {dateJson ? (dateJson.date + ' ' + dateJson.time) : null}</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         )
