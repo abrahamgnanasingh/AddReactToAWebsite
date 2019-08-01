@@ -5,7 +5,6 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            dateJson: null,
             myRecordings: [
                 { id: 1, title: 'My Meeting (1)', duration: '30 mins', startTime: '25th Jan 2019' },
                 { id: 2, title: 'My Meeting (2)', duration: '20 mins', startTime: '26th Jan 2019' },
@@ -16,14 +15,6 @@ class App extends React.Component {
 
     componentDidMount() {
         console.log('Mounted!');
-        $.ajax('http://date.jsontest.com')
-        .then(response => {
-            this.setState({
-                dateJson: response
-            });
-        }).catch(() => {
-            
-        })
     }
 
     componentDidUpdate() {
@@ -36,23 +27,27 @@ class App extends React.Component {
     }
 
     render() {
-        const { dateJson } = this.state;
+        // const { blabla } = this.state;
 
         return (
             <ErrorBoundary>
-                <div className="container">
-                    <h3>
-                        {this.props.title}
-                    </h3>
+                <Navbar />
 
-                    <p>Current Time: {dateJson ? (dateJson.date + ' ' + dateJson.time) : null}</p>
+                <div className="container" style={{marginTop: 50}}>
+                    <h3>{this.props.title}</h3>
 
-                    <TableView>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <TableView>
 
-                        <MyRecordingsRow data={this.state.myRecordings} />
-                    </TableView>
+                                <MyRecordingsRow data={this.state.myRecordings} />
+                            </TableView>
+                        </div>
 
-                    <Hooks />
+                        {/* <div className="col-md-12">
+                            <Hooks />
+                        </div> */}
+                    </div>
                 </div>
             </ErrorBoundary>
         )
