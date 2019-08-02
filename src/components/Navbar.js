@@ -12,6 +12,8 @@ class Navbar extends React.Component {
             ],
             isCollapsed: true
         };
+
+        this.handleWindowResize = this.handleWindowResize.bind(this);
     }
 
     componentDidMount() {
@@ -20,9 +22,19 @@ class Navbar extends React.Component {
             this.setState({
                 dateJson: response
             });
-        }).catch(() => {
-            
-        });
+        }).catch(() => { });
+
+        $(window).on('resize', this.handleWindowResize);
+    }
+
+    componentWillUnmount() {
+        $(window).off('resize', this.handleWindowResize);
+    }
+
+    handleWindowResize() {
+        if(!this.state.isCollapsed && (window.innerWidth >= 768)) {
+            this.setState({isCollapsed: true});
+        }
     }
 
     handleNavClick(e) {
@@ -44,7 +56,7 @@ class Navbar extends React.Component {
             <nav className="navbar navbar-inverse navbar-fixed-top">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <button type="button" className={"navbar-toggle " + (isCollapsed ? "collapsed" : "")} aria-expanded="false" aria-controls="navbar" onClick={this.handleNavbarToggleCollapse.bind(this)}>
+                        <button type="button" className={"navbar-toggle " + (isCollapsed ? "collapsed" : "")} aria-expanded={isCollapsed ? "false": "true"} onClick={this.handleNavbarToggleCollapse.bind(this)}>
                             <span className="sr-only">Toggle navigation</span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
