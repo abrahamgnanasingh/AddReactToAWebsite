@@ -5,12 +5,20 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            myRecordingsHeader: [
+                { id: 1, label: 'Topic' },
+                { id: 2, label: 'Start Time' },
+                { id: 3, label: 'Duration' },
+                { id: 4, label: 'Actions' }
+            ],
             myRecordings: [
                 { id: 1, title: 'My Meeting (1)', duration: '30 mins', startTime: '25th Jan 2019' },
                 { id: 2, title: 'My Meeting (2)', duration: '20 mins', startTime: '26th Jan 2019' },
                 { id: 3, title: 'My Meeting (3)', duration: '10 mins', startTime: '27th Jan 2019' }
             ]
         };
+
+        this.handleRecordingDelete = this.handleRecordingDelete.bind(this);
     }
 
     componentDidMount() {
@@ -26,8 +34,17 @@ class App extends React.Component {
         console.log('Unmounting.');
     }
 
+    handleRecordingDelete(e, r, index) {
+        // alert(r.id);
+        var mR = JSON.parse(JSON.stringify(this.state.myRecordings));
+        mR.splice(index, 1);
+        this.setState({
+            myRecordings: mR
+        });
+    }
+
     render() {
-        // const { blabla } = this.state;
+        const { myRecordingsHeader, myRecordings } = this.state;
 
         return (
             <ErrorBoundary>
@@ -38,9 +55,7 @@ class App extends React.Component {
 
                     <div className="row">
                         <div className="col-md-12">
-                            <TableView>
-
-                                <MyRecordingsRow data={this.state.myRecordings} />
+                            <TableView tableHeaderRow={<TableHeader data={myRecordingsHeader} />} tableBodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
                             </TableView>
                         </div>
 

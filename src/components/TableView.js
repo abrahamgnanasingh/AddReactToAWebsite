@@ -1,11 +1,15 @@
 class TableView extends React.Component {
     render() {
+        const { tableHeaderRow, tableBodyRow } = this.props;
+
         return (
             <div className="table-responsive">
                 <table className="table table-bordered">
-                    <thead></thead>
+                    <thead>
+                        {tableHeaderRow}
+                    </thead>
                     <tbody>
-                        {this.props.children}
+                        {tableBodyRow}
                     </tbody>
                 </table>
             </div>
