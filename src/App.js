@@ -35,7 +35,6 @@ class App extends React.Component {
     }
 
     handleRecordingDelete(e, r, index) {
-        // alert(r.id);
         var mR = JSON.parse(JSON.stringify(this.state.myRecordings));
         mR.splice(index, 1);
         this.setState({
@@ -55,7 +54,7 @@ class App extends React.Component {
 
                     <div className="row">
                         <div className="col-md-12">
-                            <TableView headerRow={<TableHeader data={myRecordingsHeader} />} bodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
+                            <TableView headerRow={<TableHeaderRow data={myRecordingsHeader} />} bodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
                             </TableView>
                         </div>
 

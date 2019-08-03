@@ -1,4 +1,4 @@
-class TableHeader extends React.Component {
+class TableHeaderRow extends React.Component {
     render() {
         return (
             <tr>
