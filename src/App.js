@@ -55,7 +55,7 @@ class App extends React.Component {
 
                     <div className="row">
                         <div className="col-md-12">
-                            <TableView tableHeaderRow={<TableHeader data={myRecordingsHeader} />} tableBodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
+                            <TableView headerRow={<TableHeader data={myRecordingsHeader} />} bodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
                             </TableView>
                         </div>
 
