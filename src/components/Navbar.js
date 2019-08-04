@@ -17,12 +17,14 @@ class Navbar extends React.Component {
     }
 
     componentDidMount() {
-        $.ajax('http://date.jsontest.com')
-        .then(response => {
-            this.setState({
-                dateJson: response
-            });
-        }).catch(() => { });
+        if(navigator.onLine) {
+            $.ajax('http://date.jsontest.com')
+            .then(response => {
+                this.setState({
+                    dateJson: response
+                });
+            }).catch(() => { });
+        }
 
         $(window).on('resize', this.handleWindowResize);
     }
