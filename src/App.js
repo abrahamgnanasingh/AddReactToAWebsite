@@ -49,20 +49,26 @@ class App extends React.Component {
             <ErrorBoundary>
                 <Navbar />
 
-                <div className="container" style={{marginTop: 50}}>
-                    <h3>{this.props.title}</h3>
+                <Sidebar />
 
-                    <div className="row">
-                        <div className="col-md-12">
-                            <TableView headerRow={<TableHeaderRow data={myRecordingsHeader} />} bodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
-                            </TableView>
+                <div className="main-container" style={{marginTop: 50, marginLeft: 250}}>
+                    <div className="container">
+                        <h3>{this.props.title}</h3>
+
+                        <div className="row">
+                            <div className="col-md-12">
+                                <TableView headerRow={<TableHeaderRow data={myRecordingsHeader} />} bodyRow={<MyRecordingsRow data={myRecordings} onRecordingDelete={this.handleRecordingDelete} />}>
+                                </TableView>
+                            </div>
+
+                            {/* <div className="col-md-12">
+                                <Hooks />
+                            </div> */}
                         </div>
-
-                        {/* <div className="col-md-12">
-                            <Hooks />
-                        </div> */}
                     </div>
                 </div>
+
+                <div className="clearfix"></div>
             </ErrorBoundary>
         )
     }
