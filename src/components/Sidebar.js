@@ -29,10 +29,10 @@ class Sidebar extends React.Component {
         
     }
 
-    dimension($el) {
-        var hasWidth = $el.hasClass('width');
-        return hasWidth ? 'width' : 'height';
-    }
+    // dimension($el) {
+    //     var hasWidth = $el.hasClass('width');
+    //     return hasWidth ? 'width' : 'height';
+    // }
 
     handleDropdownToggle(e, menu, index) {
         if(menu.subMenus.length) {
@@ -44,10 +44,11 @@ class Sidebar extends React.Component {
                     isCollapsed = menus[i].isCollapsed;
                     menus[i].isCollapsed = !isCollapsed;
                     menus[i].isCollapsing = true;
-                    var $collapseMenuEl = $(collapseMenuEl);
-                    var dimension = this.dimension($collapseMenuEl);
+                    // var $collapseMenuEl = $(collapseMenuEl);
+                    // var dimension = this.dimension($collapseMenuEl);
                     // var offsetHeight = $collapseMenuEl[dimension]($collapseMenuEl[dimension]())[0].offsetHeight;
-                    menus[i].offsetHeight = $collapseMenuEl[dimension]();
+                    // menus[i].offsetHeight = $collapseMenuEl[dimension]();
+                    menus[i].offsetHeight = collapseMenuEl.clientHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
                 }
             }
             this.setState({
