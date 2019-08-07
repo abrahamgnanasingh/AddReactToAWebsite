@@ -37,22 +37,26 @@ class Sidebar extends React.Component {
     handleDropdownToggle(e, menu, index) {
         if(menu.subMenus.length) {
             var collapseMenuEl = this.refs['collapseMenu' + menu.id];
+            // debugger;
             var menus = JSON.parse(JSON.stringify(this.state.menus));
-            var isCollapsed = false;
+            var isCurrMenuCollapsed = false;
             for(var i in menus) {
                 if(menus[i].key == menu.key) {
-                    isCollapsed = menus[i].isCollapsed;
-                    menus[i].isCollapsed = !isCollapsed;
+                    isCurrMenuCollapsed = !(menus[i].isCollapsed);
+                    menus[i].isCollapsed = isCurrMenuCollapsed;
                     menus[i].isCollapsing = true;
                     // var $collapseMenuEl = $(collapseMenuEl);
                     // var dimension = this.dimension($collapseMenuEl);
                     // var offsetHeight = $collapseMenuEl[dimension]($collapseMenuEl[dimension]())[0].offsetHeight;
                     // menus[i].offsetHeight = $collapseMenuEl[dimension]();
-                    menus[i].offsetHeight = collapseMenuEl.clientHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
+                    menus[i].offsetHeight = collapseMenuEl.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
                 }
             }
             this.setState({
                 menus
+            }, () => {
+                var collapseMenuEl = this.refs['collapseMenu' + menu.id];
+                debugger;
             });
             if(this.collapseTimeout) { clearTimeout(this.collapseTimeout); }
             this.collapseTimeout = setTimeout(() => {
@@ -88,7 +92,7 @@ class Sidebar extends React.Component {
                                     <a href="javascript:void(0)" aria-expanded={menu.isCollapsed ? "false" : "true"} className="dropdown-toggle" onClick={e => this.handleDropdownToggle(e, menu, index)}>{menu.label}</a>
                                     {
                                         menu.subMenus.length ?
-                                        <ul ref={'collapseMenu' + menu.id} className={"list-unstyled " + (menu.isCollapsing ? "collapsing" : ("collapse " + (menu.isCollapsed ? "" : "in")))} style={{height: (menu.isCollapsed ? 0 : '80px')}}>
+                                        <ul ref={'collapseMenu' + menu.id} className={"list-unstyled " + (menu.isCollapsing ? "collapsing" : ("collapse " + (menu.isCollapsed ? "" : "in")))} style={{height: (menu.isCollapsed ? 0 : (80 || menu.offsetHeight))}}>
                                             {
                                                 menu.subMenus.map(subMenu => {
                                                     return (
