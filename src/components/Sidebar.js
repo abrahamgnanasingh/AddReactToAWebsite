@@ -40,40 +40,38 @@ class Sidebar extends React.Component {
             var isCurrMenuCollapsed = false;
             var currentMenu = menus[currIndex];
             isCurrMenuCollapsed = !(currentMenu.isCollapsed);
-            currentMenu.offsetHeight = '';
-            // currentMenu.offsetHeight = collapseMenuEl.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
+            currentMenu.isCollapsed = isCurrMenuCollapsed;
+            currentMenu.isCollapsing = true;
+
+            var collapseMenuEl = this.refs['collapseMenu' + menu.id];
+            var cMElstyle = collapseMenuEl.style;
+            var cMHeight = '';
+
+            if(isCurrMenuCollapsed) {
+                cMHeight = 0;
+            } else {
+                cMElstyle.display = 'block';
+                cMElstyle.opacity = 0;
+                cMElstyle.position = 'absolute';
+                // debugger;
+                cMHeight = collapseMenuEl.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
+                cMElstyle.display = '';
+                cMElstyle.opacity = '';
+                cMElstyle.position = '';
+            }
 
             this.setState({
                 menus
             }, () => {
-                var menus = JSON.parse(JSON.stringify(this.state.menus));
-                var currentMenu = menus[currIndex];
-                currentMenu.isCollapsed = isCurrMenuCollapsed;
-                currentMenu.isCollapsing = true;
-                if(isCurrMenuCollapsed) {
-                    currentMenu.offsetHeight = 0;
-                } else {
-                    var collapseMenuEl = this.refs['collapseMenu' + menu.id];
-                    var cMElstyle = collapseMenuEl.style;
-                    cMElstyle.display = 'block';
-                    cMElstyle.opacity = 0;
-                    cMElstyle.position = 'absolute';
-                    debugger;
-                    currentMenu.offsetHeight = collapseMenuEl.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
-                    cMElstyle.display = '';
-                    cMElstyle.opacity = '';
-                    cMElstyle.position = '';
-                }
-                this.setState({
-                    menus
-                });
+                cMElstyle.height = cMHeight + 'px';
 
                 if(this.collapseTimeout) { clearTimeout(this.collapseTimeout); }
                 this.collapseTimeout = setTimeout(() => {
+                    this.collapseTimeout = null;
                     var menus = JSON.parse(JSON.stringify(this.state.menus));
                     var currentMenu = menus[currIndex];
                     currentMenu.isCollapsing = false;
-                    currentMenu.offsetHeight = isCurrMenuCollapsed ? 0 : '';
+                    cMElstyle.height = isCurrMenuCollapsed ? 0 : '';
                     this.setState({
                         menus
                     });
@@ -97,10 +95,10 @@ class Sidebar extends React.Component {
                         menus.map((menu, index) => {
                             return (
                                 <li key={menu.id} className={menu.id == '1' ? "active" : ""}>
-                                    <a href="javascript:void(0)" aria-expanded={menu.isCollapsed ? "false" : "true"} className="dropdown-toggle" onClick={e => this.handleDropdownToggle(e, menu, index)}>{menu.label + menu.offsetHeight}</a>
+                                    <a href="javascript:void(0)" aria-expanded={menu.isCollapsed ? "false" : "true"} className="dropdown-toggle" onClick={e => this.handleDropdownToggle(e, menu, index)}>{menu.label}</a>
                                     {
                                         menu.subMenus.length ?
-                                        <ul ref={'collapseMenu' + menu.id} className={"list-unstyled " + (menu.isCollapsing ? "collapsing" : ("collapse " + (menu.isCollapsed ? "" : "in")))} style={{height: menu.offsetHeight}}>
+                                        <ul ref={'collapseMenu' + menu.id} className={"list-unstyled " + (menu.isCollapsing ? "collapsing" : ("collapse " + (menu.isCollapsed ? "" : "in")))}>
                                             {
                                                 menu.subMenus.map(subMenu => {
                                                     return (
