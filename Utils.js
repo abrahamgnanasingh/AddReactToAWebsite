@@ -18,5 +18,18 @@ var Utils = {
             children = React.createElement(children);
         }
         ReactDOM.render(React.createElement(component, cProps, children), document.querySelector(el));
+    },
+
+    getOffsetHeight(el) {
+        var elStyle = el.style;
+        elStyle.display = 'block';
+        elStyle.opacity = 0;
+        elStyle.position = 'absolute';
+        // debugger;
+        var offsetHeight = el.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
+        elStyle.display = '';
+        elStyle.opacity = '';
+        elStyle.position = '';
+        return offsetHeight;
     }
 };

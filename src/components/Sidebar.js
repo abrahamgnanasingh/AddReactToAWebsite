@@ -29,55 +29,44 @@ class Sidebar extends React.Component {
         
     }
 
-    // dimension($el) {
-    //     var hasWidth = $el.hasClass('width');
-    //     return hasWidth ? 'width' : 'height';
-    // }
-
     handleDropdownToggle(e, menu, currIndex) {
-        if(menu.subMenus.length) {
-            var menus = JSON.parse(JSON.stringify(this.state.menus));
-            var isCurrMenuCollapsed = false;
-            var currentMenu = menus[currIndex];
-            isCurrMenuCollapsed = !(currentMenu.isCollapsed);
-            currentMenu.isCollapsed = isCurrMenuCollapsed;
-            currentMenu.isCollapsing = true;
+        if(!menu.subMenus.length) { return };
+        
+        var menus = JSON.parse(JSON.stringify(this.state.menus));
+        var isCurrMenuCollapsed = false;
+        var currentMenu = menus[currIndex];
+        isCurrMenuCollapsed = !(currentMenu.isCollapsed);
+        currentMenu.isCollapsed = isCurrMenuCollapsed;
+        currentMenu.isCollapsing = true;
 
-            var collapseMenuEl = this.refs['collapseMenu' + menu.id];
-            var cMElstyle = collapseMenuEl.style;
-            var cMHeight = cMElstyle.height = '';
+        var collapseMenuEl = this.refs['collapseMenu' + menu.id];
+        var cMElstyle = collapseMenuEl.style;
+        var cMHeight = cMElstyle.height = '';
 
-            if(isCurrMenuCollapsed) {
-                cMHeight = 0;
-            } else {
-                cMElstyle.display = 'block';
-                cMElstyle.opacity = 0;
-                cMElstyle.position = 'absolute';
-                // debugger;
-                cMHeight = collapseMenuEl.offsetHeight; //clientHeight: Height including padding, offsetHeight: Height including padding and border
-                cMElstyle.display = '';
-                cMElstyle.opacity = '';
-                cMElstyle.position = '';
-            }
-
-            this.setState({
-                menus
-            }, () => {
-                setTimeout(() => cMElstyle.height = cMHeight + 'px', 10);
-
-                if(this.collapseTimeout) { clearTimeout(this.collapseTimeout); }
-                this.collapseTimeout = setTimeout(() => {
-                    this.collapseTimeout = null;
-                    var menus = JSON.parse(JSON.stringify(this.state.menus));
-                    var currentMenu = menus[currIndex];
-                    currentMenu.isCollapsing = false;
-                    cMElstyle.height = isCurrMenuCollapsed ? 0 : '';
-                    this.setState({
-                        menus
-                    });
-                }, 300);
-            });
+        if(isCurrMenuCollapsed) {
+            cMElstyle.height = Utils.getOffsetHeight(collapseMenuEl) + 'px'; //clientHeight: Height including padding, offsetHeight: Height including padding and border
+            cMHeight = 0;
+        } else {
+            cMHeight = Utils.getOffsetHeight(collapseMenuEl);
         }
+
+        this.setState({
+            menus
+        }, () => {
+            setTimeout(() => cMElstyle.height = cMHeight + 'px', 10);
+
+            if(this.collapseTimeout) { clearTimeout(this.collapseTimeout); }
+            this.collapseTimeout = setTimeout(() => {
+                this.collapseTimeout = null;
+                var menus = JSON.parse(JSON.stringify(this.state.menus));
+                var currentMenu = menus[currIndex];
+                currentMenu.isCollapsing = false;
+                cMElstyle.height = isCurrMenuCollapsed ? 0 : '';
+                this.setState({
+                    menus
+                });
+            }, 350);
+        });
     }
 
     render() {
