@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
 
             var collapseMenuEl = this.refs['collapseMenu' + menu.id];
             var cMElstyle = collapseMenuEl.style;
-            var cMHeight = '';
+            var cMHeight = cMElstyle.height = '';
 
             if(isCurrMenuCollapsed) {
                 cMHeight = 0;
@@ -63,7 +63,7 @@ class Sidebar extends React.Component {
             this.setState({
                 menus
             }, () => {
-                cMElstyle.height = cMHeight + 'px';
+                setTimeout(() => cMElstyle.height = cMHeight + 'px', 10);
 
                 if(this.collapseTimeout) { clearTimeout(this.collapseTimeout); }
                 this.collapseTimeout = setTimeout(() => {
