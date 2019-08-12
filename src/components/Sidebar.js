@@ -5,18 +5,18 @@ class Sidebar extends React.Component {
         this.state = {
             menus: [
                 {
-                    id: 1, key: 'home', label: 'Home', isCollapsed: true, isCollapsing: false, offsetHeight: '', subMenus: [
+                    id: 1, key: 'home', label: 'Home', isCollapsed: true, isCollapsing: false, isActive: true, subMenus: [
                         { id: 1.1, key: 'page1', label: 'Page 1' },
                         { id: 1.2, key: 'page2', label: 'Page 2' }
                     ]
                 },
                 {
-                    id: 2, key: 'settings', label: 'Settings', isCollapsed: true, isCollapsing: false, offsetHeight: '', subMenus: [
+                    id: 2, key: 'settings', label: 'Settings', isCollapsed: true, isCollapsing: false, isActive: false, subMenus: [
                         { id: 2.1, key: 'general', label: 'General' },
                         { id: 2.2, key: 'personal', label: 'Personal' }
                     ]
                 },
-                { id: 3, key: 'about', label: 'About', isCollapsed: true, isCollapsing: false, offsetHeight: '', subMenus: [] }
+                { id: 3, key: 'about', label: 'About', isCollapsed: true, isCollapsing: false, isActive: false, subMenus: [] }
             ]
         };
     }
@@ -30,11 +30,19 @@ class Sidebar extends React.Component {
     }
 
     handleDropdownToggle(e, menu, currIndex) {
-        if(!menu.subMenus.length) { return };
-        
         var menus = JSON.parse(JSON.stringify(this.state.menus));
-        var isCurrMenuCollapsed = false;
         var currentMenu = menus[currIndex];
+        menus.forEach(m => {
+            m.isActive = false;
+        });
+        currentMenu.isActive = true;
+
+        if(!menu.subMenus.length) { 
+            this.setState({ menus });
+            return;
+        }
+
+        var isCurrMenuCollapsed = false;
         isCurrMenuCollapsed = !(currentMenu.isCollapsed);
         currentMenu.isCollapsed = isCurrMenuCollapsed;
         currentMenu.isCollapsing = true;
@@ -78,12 +86,12 @@ class Sidebar extends React.Component {
                     <h3>Bootstrap Sidebar</h3>
                 </div>
 
-                <ul className="list-unstyled components">
+                <ul className="nav components">
                     <p>Dummy Heading</p>
                     {
                         menus.map((menu, index) => {
                             return (
-                                <li key={menu.id} className={menu.id == '1' ? "active" : ""}>
+                                <li key={menu.id} className={menu.isActive ? 'active' : ''}>
                                     <a href="javascript:void(0)" aria-expanded={menu.isCollapsed ? "false" : "true"} className="dropdown-toggle" onClick={e => this.handleDropdownToggle(e, menu, index)}>{menu.label}</a>
                                     {
                                         menu.subMenus.length ?
