@@ -95,6 +95,16 @@ class App extends React.Component {
                                 </TableView>
                             </div>
 
+                            <div className="col-md-12">
+                                <Menu>
+                                    <Menu.Item>H</Menu.Item>
+                                    <Menu.Item>E</Menu.Item>
+                                    <Menu.Item>L</Menu.Item>
+                                    <Menu.Item>L</Menu.Item>
+                                    <Menu.Item>O</Menu.Item>
+                                </Menu>
+                            </div>
+
                             {/* <div className="col-md-12">
                                 <Hooks />
                             </div> */}
